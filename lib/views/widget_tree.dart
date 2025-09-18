@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/views/data/notifiers.dart';
 import 'package:flutter_app/views/pages/home_page.dart';
-import 'package:flutter_app/views/pages/login_page.dart';
+import 'package:flutter_app/views/pages/time_tracks.dart';
 import 'package:flutter_app/widgets/navbar_widget.dart';
 
-List<Widget> pages = [HomePage(), LoginPage()];
+List<Widget> pages = [HomePage(), TimeTracks()];
 
 class WidgetTree extends StatelessWidget {
   const WidgetTree({super.key});

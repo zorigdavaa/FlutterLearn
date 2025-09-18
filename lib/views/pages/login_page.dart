@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import "package:flutter_app/DataAccess/api_bc.dart" as api_bc;
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -8,22 +9,52 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  final TextEditingController _controller = TextEditingController();
+  final TextEditingController userNameController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(20.0),
-      child: Column(
-        children: [
-          TextField(
-            controller: _controller,
-            decoration: InputDecoration(border: OutlineInputBorder()),
-            onEditingComplete: () {
-              setState(() {});
-            },
-          ),
-          Text(_controller.text),
-        ],
+    return Scaffold(
+      appBar: AppBar(title: Text("Login Page")),
+      body: Padding(
+        padding: const EdgeInsets.all(20.0),
+        child: Column(
+          children: [
+            TextFormField(
+              controller: userNameController,
+              decoration: InputDecoration(
+                // hintText: "Username",
+                label: Text("Username"),
+                border: OutlineInputBorder(),
+              ),
+            ),
+            const SizedBox(height: 16), //space between two text fields
+            TextFormField(
+              controller: passwordController,
+              obscuringCharacter: "*",
+              decoration: InputDecoration(
+                // hintText: "Password",
+                label: Text("Password"),
+                border: OutlineInputBorder(),
+              ),
+              obscureText: true,
+            ),
+            ElevatedButton(
+              onPressed: () async {
+                bool isLoggedIn = await api_bc.login(
+                  userNameController.text,
+                  passwordController.text,
+                );
+                if (isLoggedIn) {
+                  Navigator.pop(context);
+                  print("Login successful");
+                } else {
+                  print("Login failed");
+                }
+              },
+              child: Text("Login"),
+            ),
+          ],
+        ),
       ),
     );
   }

@@ -12,7 +12,10 @@ class NavbarWidget extends StatelessWidget {
         return NavigationBar(
           destinations: [
             NavigationDestination(icon: Icon(Icons.home), label: "Home"),
-            NavigationDestination(icon: Icon(Icons.login), label: "Login"),
+            NavigationDestination(
+              icon: Icon(Icons.watch),
+              label: "Time Tracks",
+            ),
           ],
           onDestinationSelected: (int value) {
             // print("pressed " + value.toString());

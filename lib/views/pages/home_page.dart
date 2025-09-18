@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/views/pages/login_page.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -6,9 +7,26 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Text(
-        "Home Page",
-        style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+      child: Column(
+        children: [
+          Text(
+            "Home Page",
+            style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+          ),
+          IconButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) {
+                    return LoginPage();
+                  },
+                ),
+              );
+            },
+            icon: Icon(Icons.login),
+          ),
+        ],
       ),
     );
   }
