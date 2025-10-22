@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/views/data/notifiers.dart';
-import 'package:flutter_app/views/pages/home_page.dart';
-import 'package:flutter_app/views/pages/time_tracks_page.dart';
-import 'package:flutter_app/widgets/navbar_widget.dart';
+import 'package:flutter_app/views/Providers/notifiers.dart';
+import 'package:flutter_app/views/UI/pages/home_page.dart';
+import 'package:flutter_app/views/UI/pages/time_tracks_page.dart';
+import 'package:flutter_app/views/UI/widgets/navbar_widget.dart';
 
 List<Widget> pages = [HomePage(), TimeTracksPage()];
 

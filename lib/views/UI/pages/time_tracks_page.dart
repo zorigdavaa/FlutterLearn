@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/DataAccess/api_bc.dart';
-import 'package:flutter_app/Model/timetrack.dart';
+import 'package:flutter_app/Data/DataSource/api_bc.dart';
+import 'package:flutter_app/Data/Model/timetrack.dart';
 
 class TimeTracksPage extends StatefulWidget {
   const TimeTracksPage({super.key});

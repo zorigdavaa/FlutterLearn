@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/views/data/notifiers.dart';
+import 'package:flutter_app/views/Providers/notifiers.dart';
 import 'package:flutter_app/views/widget_tree.dart';
 
 void main() {

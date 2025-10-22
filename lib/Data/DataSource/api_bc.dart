@@ -1,6 +1,6 @@
 import 'dart:convert';
-import 'package:flutter_app/Model/timetrack.dart';
-import 'package:flutter_app/views/pages/time_tracks_page.dart';
+import 'package:flutter_app/Data/Model/timetrack.dart';
+import 'package:flutter_app/views/UI/pages/time_tracks_page.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
