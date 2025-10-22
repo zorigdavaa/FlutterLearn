@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:flutter_app/Data/Model/timetrack.dart';
+import 'package:flutter_app/Data/Model/user.dart';
 import 'package:flutter_app/views/UI/pages/time_tracks_page.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
@@ -89,4 +90,21 @@ Future<bool> endMyTimeTracks() async {
 Future<String?> getToken() async {
   final prefs = await SharedPreferences.getInstance();
   return prefs.getString(tokenPrefKey);
+}
+
+Future<bool> verifyToken() async {
+  final token = await getToken();
+  final url = Uri.parse("$baseUrl/login/verify");
+
+  final response = await http.post(
+    url,
+    headers: {"Authorization": " Bearer $token"},
+  );
+
+  if (response.statusCode == 200) {
+    User user = User.fromJson(jsonDecode(response.body));
+    print("User Profile: ${response.body}");
+    return true;
+  }
+  return false;
 }

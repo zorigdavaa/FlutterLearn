@@ -6,8 +6,20 @@ import 'package:flutter_app/views/UI/widgets/navbar_widget.dart';
 
 List<Widget> pages = [HomePage(), TimeTracksPage()];
 
-class WidgetTree extends StatelessWidget {
+class WidgetTree extends StatefulWidget {
   const WidgetTree({super.key});
+
+  @override
+  State<WidgetTree> createState() => _WidgetTreeState();
+}
+
+class _WidgetTreeState extends State<WidgetTree> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
