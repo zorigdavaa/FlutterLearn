@@ -1,29 +1,51 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/Data/DataSource/api_bc.dart';
 import 'package:flutter_app/Data/Model/timetrack.dart';
+import 'package:flutter_app/Data/Model/user.dart';
+import 'package:flutter_app/views/Providers/providers.dart';
+import 'package:flutter_app/views/UI/pages/login_page.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class TimeTracksPage extends StatefulWidget {
+class TimeTracksPage extends ConsumerStatefulWidget {
   const TimeTracksPage({super.key});
 
   @override
-  State<TimeTracksPage> createState() => _TimeTracksPageState();
+  ConsumerState<TimeTracksPage> createState() => _TimeTracksPageState();
 }
 
-class _TimeTracksPageState extends State<TimeTracksPage> {
+class _TimeTracksPageState extends ConsumerState<TimeTracksPage> {
   List<TimeTrack> timeTracks = [];
+  User? user;
 
   @override
   void initState() {
     super.initState();
-    fetchMyTimeTracks().then((value) {
-      setState(() {
-        timeTracks = value.take(20).toList();
+    user = ref.read(userProvider);
+    if (user == null) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) {
+              return LoginPage();
+            },
+          ),
+        );
       });
-    });
+    } else {
+      fetchMyTimeTracks().then((value) {
+        setState(() {
+          timeTracks = value.take(20).toList();
+        });
+      });
+    }
   }
 
   @override
   Widget build(BuildContext context) {
+    if (user == null) {
+      return Center(child: Text("Please login to view your time tracks."));
+    }
     return Column(
       children: [
         ListTile(

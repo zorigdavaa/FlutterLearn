@@ -92,7 +92,7 @@ Future<String?> getToken() async {
   return prefs.getString(tokenPrefKey);
 }
 
-Future<bool> verifyToken() async {
+Future<User?> verifyToken() async {
   final token = await getToken();
   final url = Uri.parse("$baseUrl/login/verify");
 
@@ -100,11 +100,16 @@ Future<bool> verifyToken() async {
     url,
     headers: {"Authorization": " Bearer $token"},
   );
-
+  print("Status code is : ${response.statusCode}");
   if (response.statusCode == 200) {
-    User user = User.fromJson(jsonDecode(response.body));
     print("User Profile: ${response.body}");
-    return true;
+    User user = User.fromJson(jsonDecode(response.body));
+    return user;
   }
-  return false;
+  return null;
+}
+
+Future deleteToken() async {
+  final prefs = await SharedPreferences.getInstance();
+  await prefs.remove(tokenPrefKey);
 }
