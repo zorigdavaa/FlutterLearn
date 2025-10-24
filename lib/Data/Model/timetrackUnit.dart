@@ -1,17 +1,17 @@
-class TimeTrack {
+class TimeTrackUnit {
   String date = "";
   String clockIn = "";
   String clockOut = "";
   String workedHours = "";
 
-  TimeTrack({
+  TimeTrackUnit.TimeTrackUnit({
     required this.date,
     required this.clockIn,
     required this.clockOut,
     required this.workedHours,
   });
-  factory TimeTrack.fromJson(Map<String, dynamic> json) {
-    return TimeTrack(
+  factory TimeTrackUnit.fromJson(Map<String, dynamic> json) {
+    return TimeTrackUnit.TimeTrackUnit(
       date: json['Date'] ?? '',
       clockIn: json['ClockIn'] ?? '',
       clockOut: json['ClockOut'] ?? '',

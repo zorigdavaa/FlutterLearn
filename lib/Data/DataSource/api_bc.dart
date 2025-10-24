@@ -1,5 +1,6 @@
 import 'dart:convert';
-import 'package:flutter_app/Data/Model/timetrack.dart';
+import 'package:flutter_app/Data/Model/timetrackUnit.dart';
+import 'package:flutter_app/Data/Model/timetracking.dart';
 import 'package:flutter_app/Data/Model/user.dart';
 import 'package:flutter_app/views/UI/pages/time_tracks_page.dart';
 import 'package:http/http.dart' as http;
@@ -33,7 +34,7 @@ Future<bool> login(String email, String password) async {
   }
 }
 
-Future<List<TimeTrack>> fetchMyTimeTracks() async {
+Future<List<TimeTrackUnit>> fetchMyTimeTracks() async {
   final token = await getToken();
   final url = Uri.parse("$baseUrl/time-tracking");
 
@@ -46,13 +47,35 @@ Future<List<TimeTrack>> fetchMyTimeTracks() async {
     print("Time Tracks: ${response.body}");
     var data = jsonDecode(response.body);
     List<dynamic> tracksJson = data["time_trackings"];
-    List<TimeTrack> timeTracks = tracksJson
-        .map((x) => TimeTrack.fromJson(x))
+    List<TimeTrackUnit> timeTracks = tracksJson
+        .map((x) => TimeTrackUnit.fromJson(x))
         .toList();
 
     return timeTracks;
   } else {}
-  return <TimeTrack>[];
+  return <TimeTrackUnit>[];
+}
+
+Future<List<TimeTracking>> fetchTodaysTimeTracks() async {
+  final token = await getToken();
+  final url = Uri.parse("$baseUrl/time-tracking/today");
+
+  final response = await http.get(
+    url,
+    headers: {"Authorization": "Bearer $token"},
+  );
+  print("todays track: ${response.statusCode}");
+  if (response.statusCode == 200) {
+    print("Today Time Tracks: ${response.body}");
+    var data = jsonDecode(response.body);
+    List<dynamic> tracksJson = data["time_trackings"];
+    List<TimeTracking> timeTracks = tracksJson
+        .map((x) => TimeTracking.fromJson(x))
+        .toList();
+
+    return timeTracks;
+  } else {}
+  return <TimeTracking>[];
 }
 
 Future<bool> startMyTimeTracks() async {

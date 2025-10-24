@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/Data/DataSource/api_bc.dart';
-import 'package:flutter_app/Data/Model/timetrack.dart';
+import 'package:flutter_app/Data/Model/timetrackUnit.dart';
 import 'package:flutter_app/Data/Model/user.dart';
 import 'package:flutter_app/views/Providers/providers.dart';
 import 'package:flutter_app/views/UI/pages/login_page.dart';
@@ -14,7 +14,7 @@ class TimeTracksPage extends ConsumerStatefulWidget {
 }
 
 class _TimeTracksPageState extends ConsumerState<TimeTracksPage> {
-  List<TimeTrack> timeTracks = [];
+  List<TimeTrackUnit> timeTracks = [];
   User? user;
 
   @override
