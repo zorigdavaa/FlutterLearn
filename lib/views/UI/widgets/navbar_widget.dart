@@ -13,8 +13,12 @@ class NavbarWidget extends StatelessWidget {
           destinations: [
             NavigationDestination(icon: Icon(Icons.home), label: "Home"),
             NavigationDestination(
-              icon: Icon(Icons.watch),
+              icon: Icon(Icons.today),
               label: "Time Tracks",
+            ),
+            NavigationDestination(
+              icon: Icon(Icons.watch),
+              label: "Todays Tracks",
             ),
           ],
           onDestinationSelected: (int value) {

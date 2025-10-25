@@ -9,7 +9,7 @@ class TimeTracking {
   String ClockIn;
   String ClockOut;
   int UserID;
-  // User? User;
+  User UserIts;
   TimeTracking({
     required this.ID,
     required this.CreatedAt,
@@ -18,7 +18,7 @@ class TimeTracking {
     required this.ClockIn,
     required this.ClockOut,
     required this.UserID,
-    // this.User,
+    required this.UserIts,
   });
 
   factory TimeTracking.fromJson(Map<String, dynamic> x) {
@@ -30,7 +30,7 @@ class TimeTracking {
       ClockIn: x['ClockIn'] ?? '',
       ClockOut: x['ClockOut'] ?? '',
       UserID: x['UserID'] ?? 0,
-      // User: x['User'] != null ? User.fromJson(x['User']) : null,
+      UserIts: x['User'] != null ? User.fromJson(x['User']) : User.empty(),
     );
   }
 }

@@ -5,13 +5,14 @@ import 'package:flutter_app/views/Providers/providers.dart';
 import 'package:flutter_app/views/UI/pages/home_page.dart';
 import 'package:flutter_app/views/UI/pages/login_page.dart';
 import 'package:flutter_app/views/UI/pages/time_tracks_page.dart';
+import 'package:flutter_app/views/UI/pages/time_tracks_today_page.dart';
 import 'package:flutter_app/views/UI/widgets/navbar_widget.dart';
 // import 'package:flutter_app/Data/DataSource/api_bc.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../Data/DataSource/api_bc.dart' as api_bc;
 
-List<Widget> pages = [HomePage(), TimeTracksPage()];
+List<Widget> pages = [HomePage(), TimeTracksPage(), TimeTracksTodayPage()];
 
 class WidgetTree extends ConsumerStatefulWidget {
   const WidgetTree({super.key});

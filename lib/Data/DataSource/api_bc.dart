@@ -56,7 +56,8 @@ Future<List<TimeTrackUnit>> fetchMyTimeTracks() async {
   return <TimeTrackUnit>[];
 }
 
-Future<List<TimeTracking>> fetchTodaysTimeTracks() async {
+Future<(List<TimeTracking> timeTracks, List<User> unTrackedUsers)>
+fetchTodaysTimeTracks() async {
   final token = await getToken();
   final url = Uri.parse("$baseUrl/time-tracking/today");
 
@@ -64,18 +65,27 @@ Future<List<TimeTracking>> fetchTodaysTimeTracks() async {
     url,
     headers: {"Authorization": "Bearer $token"},
   );
+
+  (List<TimeTracking> timeTracks, List<User> unTrackedUsers) returnObj = (
+    [],
+    [],
+  );
   print("todays track: ${response.statusCode}");
   if (response.statusCode == 200) {
     print("Today Time Tracks: ${response.body}");
     var data = jsonDecode(response.body);
-    List<dynamic> tracksJson = data["time_trackings"];
+    List<dynamic> tracksJson = data["time_trackings"] ?? [];
     List<TimeTracking> timeTracks = tracksJson
         .map((x) => TimeTracking.fromJson(x))
         .toList();
 
-    return timeTracks;
+    List<dynamic> usersJson = data["untracked_users"];
+    List<User> unTrackedUsers = usersJson.map((x) => User.fromJson(x)).toList();
+    returnObj = (timeTracks, unTrackedUsers);
+
+    // return timeTracks;
   } else {}
-  return <TimeTracking>[];
+  return returnObj;
 }
 
 Future<bool> startMyTimeTracks() async {

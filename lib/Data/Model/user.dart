@@ -22,4 +22,11 @@ class User {
       // "",
     );
   }
+
+  User.empty()
+    : firstName = '',
+      lastName = '',
+      phoneNumber = '',
+      email = '',
+      userTypeID = 0;
 }
