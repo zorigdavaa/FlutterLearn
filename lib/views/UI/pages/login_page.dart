@@ -53,8 +53,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                 );
                 if (isLoggedIn) {
                   User? user = await api_bc.verifyToken();
-                  ref.read(userProvider.notifier).state = user;
-                  Navigator.pop(context);
+                  ref.read(userProvider.notifier).setUser(user);
                   print("Login successful");
                 } else {
                   print("Login failed");

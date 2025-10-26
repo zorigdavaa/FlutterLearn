@@ -38,7 +38,7 @@ class _WidgetTreeState extends ConsumerState<WidgetTree> {
       await api_bc.deleteToken();
     }
     setState(() {
-      ref.read(userProvider.notifier).state = result;
+      ref.read(userProvider.notifier).setUser(result);
       isLoading = false;
       if (result == null) {
         Navigator.push(

@@ -32,7 +32,7 @@ class HomePage extends ConsumerWidget {
                     )
                   : {
                       api_bc.deleteToken(),
-                      ref.read(userProvider.notifier).state = null,
+                      ref.read(userProvider.notifier).setUser(null),
                     };
             },
             icon: user == null ? Icon(Icons.login) : Icon(Icons.logout),
