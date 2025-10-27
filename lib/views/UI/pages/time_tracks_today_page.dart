@@ -50,7 +50,7 @@ class _TimeTracksTodayState extends ConsumerState<TimeTracksTodayPage> {
               TableRow(
                 children: [
                   Text((i + 1).toString()),
-                  Text(TrackedUsers[i].UserIts?.firstName ?? 'Unknown'),
+                  Text(TrackedUsers[i].Name),
                   Text(TrackedUsers[i].ClockIn),
                   Text(TrackedUsers[i].ClockOut),
                 ],

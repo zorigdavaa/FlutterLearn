@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter_app/Data/Model/user.dart';
 
 class TimeTracking {
@@ -8,8 +7,8 @@ class TimeTracking {
   String DeletedAt;
   String ClockIn;
   String ClockOut;
-  int UserID;
-  User UserIts;
+  String Name;
+  int UserId;
   TimeTracking({
     required this.ID,
     required this.CreatedAt,
@@ -17,20 +16,20 @@ class TimeTracking {
     required this.DeletedAt,
     required this.ClockIn,
     required this.ClockOut,
-    required this.UserID,
-    required this.UserIts,
+    required this.Name,
+    required this.UserId,
   });
 
   factory TimeTracking.fromJson(Map<String, dynamic> x) {
     return TimeTracking(
-      ID: x['ID'] ?? 0,
-      CreatedAt: x['CreatedAt'] ?? '',
-      UpdatedAt: x['UpdatedAt'] ?? '',
-      DeletedAt: x['DeletedAt'] ?? '',
-      ClockIn: x['ClockIn'] ?? '',
-      ClockOut: x['ClockOut'] ?? '',
-      UserID: x['UserID'] ?? 0,
-      UserIts: x['User'] != null ? User.fromJson(x['User']) : User.empty(),
+      ID: x['id'] ?? 0,
+      CreatedAt: x['created_at'] ?? '',
+      UpdatedAt: x['updated_at'] ?? '',
+      DeletedAt: x['deleted_at'] ?? '',
+      ClockIn: x['clock_in'] ?? '',
+      ClockOut: x['clock_out'] ?? '',
+      Name: x['name'] ?? '',
+      UserId: x['user_id'] ?? 0,
     );
   }
 }

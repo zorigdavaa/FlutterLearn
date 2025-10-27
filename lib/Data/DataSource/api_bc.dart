@@ -2,7 +2,6 @@ import 'dart:convert';
 import 'package:flutter_app/Data/Model/timetrackUnit.dart';
 import 'package:flutter_app/Data/Model/timetracking.dart';
 import 'package:flutter_app/Data/Model/user.dart';
-import 'package:flutter_app/views/UI/pages/time_tracks_page.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -74,7 +73,7 @@ fetchTodaysTimeTracks() async {
   if (response.statusCode == 200) {
     print("Today Time Tracks: ${response.body}");
     var data = jsonDecode(response.body);
-    List<dynamic> tracksJson = data["time_trackings"] ?? [];
+    List<dynamic> tracksJson = data["tracked_users"] ?? [];
     List<TimeTracking> timeTracks = tracksJson
         .map((x) => TimeTracking.fromJson(x))
         .toList();
