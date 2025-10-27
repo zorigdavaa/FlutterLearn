@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import "package:flutter_app/Data/DataSource/api_bc.dart" as api_bc;
 import 'package:flutter_app/Data/Model/user.dart';
 import 'package:flutter_app/views/Providers/providers.dart';
+import 'package:flutter_app/views/UI/pages/home_page.dart';
+import 'package:flutter_app/views/widget_tree.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class LoginPage extends ConsumerStatefulWidget {
@@ -54,6 +56,13 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                 if (isLoggedIn) {
                   User? user = await api_bc.verifyToken();
                   ref.read(userProvider.notifier).setUser(user);
+                  if (context.mounted) {
+                    Navigator.pushAndRemoveUntil(
+                      context,
+                      MaterialPageRoute(builder: (context) => WidgetTree()),
+                      (route) => false,
+                    );
+                  }
                   print("Login successful");
                 } else {
                   print("Login failed");
